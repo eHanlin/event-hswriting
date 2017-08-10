@@ -6,9 +6,9 @@ var del = require("del");
 var path = require("path");
 var Q = require("q");
 var util = require("gulp-template-util");
-var less = require("less");
 
 function buildStyle() {
+  console.log("func buildStyle()");
   return es.map(function(file, cb) {
     less.render(
       file.contents.toString(),
@@ -30,6 +30,7 @@ function buildStyle() {
 }
 
 function libTask(dest) {
+  console.log("func libTask()");
   return function() {
     var packageJson = JSON.parse(
       fs.readFileSync("package.json", "utf8").toString()
@@ -47,37 +48,30 @@ function libTask(dest) {
   };
 }
 
-function styleTask(dest) {
-  return function() {
-    return gulp
-      .src("src/css/*.css")
-      .pipe(buildStyle())
-      .pipe(rename({ extname: ".css" }))
-      .pipe(gulp.dest(dest));
-  };
-}
-
 function copyStaticTask(dest) {
+  console.log("func copyStaticTask()");
   return function() {
     return gulp
-      .src(["src/*.html", "src/img/*.png"], { base: "src" })
+      .src(
+        ["src/**/*.html", "src/img/**/*", "src/css/**/*.css", "src/lib/**/*"],
+        {
+          base: "src"
+        }
+      )
       .pipe(gulp.dest(dest));
   };
 }
 
 function cleanTask() {
-  return del(["dist", "src/css"]);
+  console.log("func cleanTask");
+  return del(["dist", ""]);
 }
 
-gulp.task("clean", cleanTask);
 gulp.task("lib", libTask("src/lib"));
-gulp.task("style", styleTask("src/css"));
 gulp.task("build", ["style", "lib"]);
-gulp.task("watch", function() {
-  gulp.watch("src/css/*.css", ["style"]);
-});
 
 gulp.task("package", function() {
+  console.log("=====================");
   var deferred = Q.defer();
   Q.fcall(function() {
     return util.logPromise(cleanTask);
