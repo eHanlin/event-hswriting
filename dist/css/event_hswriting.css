@@ -1,6 +1,6 @@
 #testBasic {
   width: 980px;
-  background: url('https://www.ehanlin.com.tw/images/body_bg.jpg') repeat;
+  background: url("https://www.ehanlin.com.tw/images/body_bg.jpg") repeat;
   color: #898989;
   font-size: 12px;
   text-align: right;
@@ -49,7 +49,7 @@ html {
 }
 
 .box .box-title .tag.blue {
-  background: url('../img/wBTitleTag_bk.png') no-repeat 0 0;
+  background: url("../img/wBTitleTag_bk.png") no-repeat 0 0;
 }
 
 .box .box-title .tag.blue:after {
