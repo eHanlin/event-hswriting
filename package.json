@@ -8,12 +8,10 @@
     "url": "https://github.com/eHanlin/event-hswriting.git"
   },
   "dependencies": {
-    "@google-cloud/storage": "^1.7.0",
     "del": "^3.0.0",
-    "fs": "0.0.1-security",
     "gulp": "^3.9.1",
+    "gulp-gcloud-publish": "^2.0.0",
     "gulp-template-util": "0.0.2",
-    "path": "^0.12.7",
     "q": "^1.5.1"
   }
 }
